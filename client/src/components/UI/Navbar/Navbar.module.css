@@ -1,0 +1,30 @@
+.navbar{
+  min-width: 100%;
+  min-height: 80px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: lightpink;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar__links {
+  display: flex;
+  margin-left: auto;
+}
+
+
+.newBtn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
+  width: 100%;
+  max-width: 200px;
+  font-weight: 600;
+}
