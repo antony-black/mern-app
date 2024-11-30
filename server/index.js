@@ -23,6 +23,10 @@ app.use(cors({
 }));
 
 app.use('/api', router);
+app.use((req, res, next) => {
+  console.log(`Received ${req.method} request for ${req.path}`);
+  next();
+});
 app.use(errorMiddleware);
 
 const start = async () => {
