@@ -35,10 +35,12 @@ $api.interceptors.response.use(
         localStorage.setItem("token", response.data.accessToken);
         return $api.request(originalRequest);
       } catch (err) {
+        console.error("Axios Error:", error.toJSON());
         console.error(
           "http/index/$api.interceptors.response: not authorized",
           err
         );
+        throw error;
       }
     }
     console.error(
