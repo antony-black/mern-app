@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require("express");
+const helmet = require('helmet');
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require('mongoose');
@@ -8,6 +9,28 @@ const errorMiddleware = require('./middlewares/error-midleware');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://vercel.live"],
+        connectSrc: ["'self'", "https://vercel.live"],
+        imgSrc: ["'self'", "data:"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+      },
+    },
+  })
+);
+
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self' https://vercel.live;"
+  );
+  next();
+});
 
 app.use(express.json());
 app.use(cookieParser());
